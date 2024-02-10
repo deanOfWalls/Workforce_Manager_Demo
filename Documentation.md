@@ -1,39 +1,54 @@
 ## Initial Setup
-- First connect to your server
-> maria -u username -p
+- Install mariadb
+> sudo pacman -S mariadb
 
-OR
+- Initialize the MariaDB Data Directory
+> sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 
-> sql -u username -p
+- Start and Enable MariaDB Service
+> sudo systemctl start mariadb
+> sudo systemctl enable mariadb
+
+- Secure MariaDB Installation
+> sudo mysql_secure_installation
+
+- Log into MariaDB (Use the password you set during the previous step)
+> sudo mariadb -u root -p
 
 - Create a new database
-> CREATE DATABASE databaseName;
+> CREATE DATABASE your_database_name;
 
-- Switch to the new database
-> USE databaseName;
+- Create a New User and Grant Permissions
+> CREATE USER 'your_username'@'localhost' IDENTIFIED BY 'your_password';
+> GRANT ALL PRIVILEGES ON your_database_name.* TO 'your_username'@'localhost';
+> FLUSH PRIVILEGES;
+
+- Test the New User
+> EXIT;
+> mariadb -u your_username -p
+> USE your_database_name;
 
 ## Create Tables
-> CREATE TABLE Employee (
-> EmployeeID INT PRIMARY KEY
+> CREATE TABLE employee (
+> employee_id INT PRIMARY KEY
 > );
 
-
-> CREATE TABLE Department (
-> DepartmentID INT PRIMARY KEY
+> CREATE TABLE department (
+> department_id INT PRIMARY KEY
 > );
 
-> CREATE TABLE ContactInformation (
-> ContactID INT PRIMARY KEY
+> CREATE TABLE contact_information (
+> contact_id INT PRIMARY KEY
 > );
 
-> CREATE TABLE Address (
-> AddressID INT PRIMARY KEY
+> CREATE TABLE address (
+> address_id INT PRIMARY KEY
 > );
 
-> CREATE TABLE Attendance (
-> AttendanceID INT PRIMARY KEY
+> CREATE TABLE attendance (
+> attendance_id INT PRIMARY KEY
 > );
 
-> CREATE TABLE LeaveManagement (
-> LeaveID INT PRIMARY KEY
+> CREATE TABLE leave_management (
+> leave_id INT PRIMARY KEY
 > );
