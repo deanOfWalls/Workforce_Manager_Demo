@@ -10,4 +10,28 @@ OR
 - Switch to the new database
 > USE databaseName;
 
+## Create Tables
+> CREATE TABLE Employee (
+> EmployeeID INT PRIMARY KEY
+> );
 
+
+> CREATE TABLE Department (
+> DepartmentID INT PRIMARY KEY
+> );
+
+> CREATE TABLE ContactInformation (
+> ContactID INT PRIMARY KEY
+> );
+
+> CREATE TABLE Address (
+> AddressID INT PRIMARY KEY
+> );
+
+> CREATE TABLE Attendance (
+> AttendanceID INT PRIMARY KEY
+> );
+
+> CREATE TABLE LeaveManagement (
+> LeaveID INT PRIMARY KEY
+> );
