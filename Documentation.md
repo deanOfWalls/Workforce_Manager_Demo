@@ -98,3 +98,39 @@
 > ADD end_date DATE, 
 > ADD leave_type ENUM('personal', 'sick', 'vacation'),
 > ADD start_date DATE;
+
+## Add Foreign Key Constraints
+- address
+> ALTER TABLE address
+> ADD CONSTRAINT fk_address_employee
+> FOREIGN KEY (employee_id) REFERENCES employee(employee_id);
+
+- attendance
+> ALTER TABLE attendance
+> ADD CONSTRAINT fk_attendance_employee
+> FOREIGN KEY (employee_id) REFERENCES employee(employee_id);
+
+- contact information
+> ALTER TABLE contact_information
+> ADD CONSTRAINT fk_contact_information_employee
+> FOREIGN KEY (employee_id) REFERENCES employee(employee_id);
+
+- department
+> ALTER TABLE department
+> ADD CONSTRAINT fk_department_head_employee
+> FOREIGN KEY (department_id) REFERENCES employee(employee_id);
+
+- employee
+> ALTER TABLE employee
+> ADD CONSTRAINT fk_employee_department
+> FOREIGN KEY (department_id) REFERENCES department(department_id);
+
+- employee
+> ALTER TABLE employee
+> ADD CONSTRAINT fk_employee_manager
+> FOREIGN KEY (manager_id) REFERENCES employee(employee_id);
+
+- leave_management
+> ALTER TABLE leave_management
+> ADD CONSTRAINT fk_leave_management_employee
+> FOREIGN KEY (employee_id) REFERENCES employee(employee_id);
