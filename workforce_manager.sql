@@ -29,7 +29,9 @@ CREATE TABLE `address` (
   `state` varchar(255) DEFAULT NULL,
   `street` varchar(255) DEFAULT NULL,
   `zip_code` int(11) DEFAULT NULL,
-  PRIMARY KEY (`address_id`)
+  PRIMARY KEY (`address_id`),
+  KEY `fk_address_employee` (`employee_id`),
+  CONSTRAINT `fk_address_employee` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -55,7 +57,9 @@ CREATE TABLE `attendance` (
   `employee_id` int(11) DEFAULT NULL,
   `time_in` time DEFAULT NULL,
   `time_out` time DEFAULT NULL,
-  PRIMARY KEY (`attendance_id`)
+  PRIMARY KEY (`attendance_id`),
+  KEY `fk_attendance_employee` (`employee_id`),
+  CONSTRAINT `fk_attendance_employee` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -80,7 +84,9 @@ CREATE TABLE `contact_information` (
   `employee_id` int(11) DEFAULT NULL,
   `employee_phone` varchar(255) DEFAULT NULL,
   `employee_email` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`contact_id`)
+  PRIMARY KEY (`contact_id`),
+  KEY `fk_contact_information_employee` (`employee_id`),
+  CONSTRAINT `fk_contact_information_employee` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -104,7 +110,8 @@ CREATE TABLE `department` (
   `department_id` int(11) NOT NULL,
   `department_head_id` int(11) DEFAULT NULL,
   `department_name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`department_id`)
+  PRIMARY KEY (`department_id`),
+  CONSTRAINT `fk_department_head_employee` FOREIGN KEY (`department_id`) REFERENCES `employee` (`employee_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -135,7 +142,11 @@ CREATE TABLE `employee` (
   `position` varchar(255) DEFAULT NULL,
   `salary` decimal(10,2) DEFAULT NULL,
   `manager_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`employee_id`)
+  PRIMARY KEY (`employee_id`),
+  KEY `fk_employee_department` (`department_id`),
+  KEY `fk_employee_manager` (`manager_id`),
+  CONSTRAINT `fk_employee_department` FOREIGN KEY (`department_id`) REFERENCES `department` (`department_id`),
+  CONSTRAINT `fk_employee_manager` FOREIGN KEY (`manager_id`) REFERENCES `employee` (`employee_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -161,7 +172,9 @@ CREATE TABLE `leave_management` (
   `end_date` date DEFAULT NULL,
   `leave_type` enum('personal','sick','vacation') DEFAULT NULL,
   `start_date` date DEFAULT NULL,
-  PRIMARY KEY (`leave_id`)
+  PRIMARY KEY (`leave_id`),
+  KEY `fk_leave_management_employee` (`employee_id`),
+  CONSTRAINT `fk_leave_management_employee` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -183,4 +196,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-11  7:32:01
+-- Dump completed on 2024-02-11 11:12:44
