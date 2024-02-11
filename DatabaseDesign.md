@@ -1,54 +1,53 @@
 # Database Design
 
-Employee Table:
+address table:
 
-- EmployeeID (Primary Key)
-- FirstName
-- LastName
-- DateOfBirth
-- Gender
-- HireDate
-- DepartmentID (Foreign Key referencing Department Table)
-- Position
-- Salary
-- ManagerID (Foreign Key referencing Employee Table)
+- address_id (primary key)
+- city
+- employee_id (foreign key referencing employee table)
+- state
+- street
+- zip_code
 
-Department Table:
+attendance table:
 
-- DepartmentID (Primary Key)
-- DepartmentName
-- DepartmentHeadID (Foreign Key referencing Employee Table)
+- attendance_id (primary key)
+- date
+- employee_id (foreign key referencing employee table)
+- time_in
+- time_out
 
-ContactInformation Table:
+contact_information table:
 
-- ContactID (Primary Key)
-- EmployeeID (Foreign Key referencing Employee Table)
-- ContactType (e.g., Phone, Email)
-- ContactValue
+- contact_id (primary key)
+- employee_email
+- employee_id (foreign key referencing employee table)
+- employee_phone
 
-Address Table:
+department table:
 
-- AddressID (Primary Key)
-- EmployeeID (Foreign Key referencing Employee Table)
-- AddressType (e.g., Home, Work)
-- Street
-- City
-- State
-- ZipCode
+- department_head_id (foreign key referencing employee table)
+- department_id (primary key)
+- department_name
 
-Attendance Table:
+employee table:
 
-- AttendanceID (Primary Key)
-- EmployeeID (Foreign Key referencing Employee Table)
-- Date
-- TimeIn
-- TimeOut
+- date_of_birth
+- department_id (foreign key referencing department table)
+- employee_id (primary key)
+- first_name
+- gender
+- hire_date
+- last_name
+- manager_id (foreign key referencing employee table)
+- position
+- salary
 
-LeaveManagement Table:
+leave_management table:
 
-- LeaveID (Primary Key)
-- EmployeeID (Foreign Key referencing Employee Table)
-- LeaveType
-- StartDate
-- EndDate
-- Reason
+- employee_id (foreign key referencing employee table)
+- end_date
+- leave_id (primary key)
+- leave_type
+- reason
+- start_date
