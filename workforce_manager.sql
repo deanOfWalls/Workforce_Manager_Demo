@@ -24,6 +24,11 @@ DROP TABLE IF EXISTS `address`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `address` (
   `address_id` int(11) NOT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `employee_id` int(11) DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `street` varchar(255) DEFAULT NULL,
+  `zip_code` int(11) DEFAULT NULL,
   PRIMARY KEY (`address_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -38,6 +43,32 @@ LOCK TABLES `address` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `attendance`
+--
+
+DROP TABLE IF EXISTS `attendance`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `attendance` (
+  `attendance_id` int(11) NOT NULL,
+  `date` date DEFAULT NULL,
+  `employee_id` int(11) DEFAULT NULL,
+  `time_in` time DEFAULT NULL,
+  `time_out` time DEFAULT NULL,
+  PRIMARY KEY (`attendance_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `attendance`
+--
+
+LOCK TABLES `attendance` WRITE;
+/*!40000 ALTER TABLE `attendance` DISABLE KEYS */;
+/*!40000 ALTER TABLE `attendance` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `contact_information`
 --
 
@@ -46,6 +77,9 @@ DROP TABLE IF EXISTS `contact_information`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `contact_information` (
   `contact_id` int(11) NOT NULL,
+  `employee_id` int(11) DEFAULT NULL,
+  `employee_phone` varchar(255) DEFAULT NULL,
+  `employee_email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`contact_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -68,6 +102,8 @@ DROP TABLE IF EXISTS `department`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `department` (
   `department_id` int(11) NOT NULL,
+  `department_head_id` int(11) DEFAULT NULL,
+  `department_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`department_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -90,6 +126,15 @@ DROP TABLE IF EXISTS `employee`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `employee` (
   `employee_id` int(11) NOT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `date_of_birth` date DEFAULT NULL,
+  `gender` enum('Male','Female') DEFAULT NULL,
+  `hire_date` date DEFAULT NULL,
+  `department_id` int(11) DEFAULT NULL,
+  `position` varchar(255) DEFAULT NULL,
+  `salary` decimal(10,2) DEFAULT NULL,
+  `manager_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`employee_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -112,6 +157,10 @@ DROP TABLE IF EXISTS `leave_management`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `leave_management` (
   `leave_id` int(11) NOT NULL,
+  `employee_id` int(11) DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `leave_type` enum('personal','sick','vacation') DEFAULT NULL,
+  `start_date` date DEFAULT NULL,
   PRIMARY KEY (`leave_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -134,4 +183,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-10 11:01:15
+-- Dump completed on 2024-02-11  7:32:01
