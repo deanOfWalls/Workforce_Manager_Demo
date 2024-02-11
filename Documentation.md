@@ -52,3 +52,49 @@
 > CREATE TABLE leave_management (
 > leave_id INT PRIMARY KEY
 > );
+
+## Create remaining fields for all tables
+- address
+> ALTER TABLE address
+> ADD city VARCHAR(255),
+> ADD employee_id INT,
+> ADD state VARCHAR(255),
+> ADD street VARCHAR(255),
+> ADD zip_code INT;
+
+- attendance
+> ALTER TABLE attendance
+> ADD date DATE,
+> ADD employee_id INT, 
+> ADD time_in TIME,
+> ADD time_out TIME;
+
+- contact_information
+> ALTER TABLE contact_information
+> ADD employee_email VARCHAR(255),
+> ADD employee_id INT,
+> ADD employee_phone VARCHAR(255);
+
+- department
+> ALTER TABLE department
+> ADD department_head_id INT,
+> ADD department_name VARCHAR(255);
+
+- employee
+> ALTER TABLE employee
+> ADD date_of_birth DATE,
+> ADD department_id INT,
+> ADD first_name VARCHAR(255),
+> ADD gender ENUM('female', 'male'),
+> ADD hire_date DATE,
+> ADD last_name VARCHAR(255),
+> ADD manager_id INT,
+> ADD position ENUM('ceo', 'production_lead', 'software_developer'),
+> ADD salary DECIMAL(10, 2);
+
+- leave_management
+> ALTER TABLE leave_management
+> ADD employee_id INT,
+> ADD end_date DATE, 
+> ADD leave_type ENUM('personal', 'sick', 'vacation'),
+> ADD start_date DATE;

@@ -49,5 +49,4 @@ leave_management table:
 - end_date
 - leave_id (primary key)
 - leave_type
-- reason
 - start_date
