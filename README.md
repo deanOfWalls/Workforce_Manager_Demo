@@ -46,7 +46,3 @@ Feedback and suggestions are welcome. Feel free to fork, modify, and submit pull
 ## Disclaimer
 
 This is a demonstration project, showcasing SQL skills and database design principles using MariaDB. It is not intended for production environments.
-
-## License
-
-This project is open-sourced under the MIT License. See the LICENSE file for more details.
