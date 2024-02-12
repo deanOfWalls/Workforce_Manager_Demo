@@ -41,6 +41,10 @@ CREATE TABLE `address` (
 
 LOCK TABLES `address` WRITE;
 /*!40000 ALTER TABLE `address` DISABLE KEYS */;
+INSERT INTO `address` VALUES
+(1,'Wilmington',1,'Delaware','123 Mifflin Lane',19720),
+(2,'Middletown',2,'Delaware','555 Harbor Street',19722),
+(3,'New Castle',3,'Pennsylvania','111 Long Road',77322);
 /*!40000 ALTER TABLE `address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -69,6 +73,10 @@ CREATE TABLE `attendance` (
 
 LOCK TABLES `attendance` WRITE;
 /*!40000 ALTER TABLE `attendance` DISABLE KEYS */;
+INSERT INTO `attendance` VALUES
+(1,'2024-02-01',1,'08:00:00','17:00:00'),
+(2,'2024-02-01',2,'08:00:00','17:00:00'),
+(3,'2024-02-01',3,'08:14:34','17:00:00');
 /*!40000 ALTER TABLE `attendance` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,6 +104,10 @@ CREATE TABLE `contact_information` (
 
 LOCK TABLES `contact_information` WRITE;
 /*!40000 ALTER TABLE `contact_information` DISABLE KEYS */;
+INSERT INTO `contact_information` VALUES
+(1,1,'555-0001','john.doe@email.com'),
+(2,2,'555-0002','dean@deanwalls.com'),
+(3,3,'555-0003','nastya@email.com');
 /*!40000 ALTER TABLE `contact_information` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,7 +123,8 @@ CREATE TABLE `department` (
   `department_head_id` int(11) DEFAULT NULL,
   `department_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`department_id`),
-  CONSTRAINT `fk_department_head_employee` FOREIGN KEY (`department_id`) REFERENCES `employee` (`employee_id`)
+  KEY `fk_department_head_employee` (`department_head_id`),
+  CONSTRAINT `fk_department_head_employee` FOREIGN KEY (`department_head_id`) REFERENCES `employee` (`employee_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -121,6 +134,10 @@ CREATE TABLE `department` (
 
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
+INSERT INTO `department` VALUES
+(1,2,'Human Resources'),
+(2,1,'Engineering'),
+(3,3,'Marketing');
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -156,6 +173,10 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
+INSERT INTO `employee` VALUES
+(1,'John','Doe','1985-01-15','Male','2015-06-23',NULL,'Senior Developer',130000.00,NULL),
+(2,'Dean','Walls','1999-09-09','Male','2022-01-23',NULL,'Junior Developer',90000.00,1),
+(3,'Anastasia','Bezrabotnyy','2010-01-15','Female','2024-01-19',NULL,'Junior Developer',90000.00,1);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,6 +205,11 @@ CREATE TABLE `leave_management` (
 
 LOCK TABLES `leave_management` WRITE;
 /*!40000 ALTER TABLE `leave_management` DISABLE KEYS */;
+INSERT INTO `leave_management` VALUES
+(1,1,'2024-02-08','vacation','2024-02-03'),
+(2,2,'2024-02-10','personal','2024-02-09'),
+(3,3,'2024-02-12','sick','2024-02-11'),
+(4,3,'2024-02-15','vacation','2024-02-14');
 /*!40000 ALTER TABLE `leave_management` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -196,4 +222,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-11 11:12:44
+-- Dump completed on 2024-02-12 12:48:34
